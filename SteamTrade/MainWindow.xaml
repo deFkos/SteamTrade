@@ -1,0 +1,79 @@
+﻿<Window x:Name="Main"  x:Class="SteamTrade.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteamTrade"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MaxWidth="800" MaxHeight="450">
+
+    <Grid Background="#FF1B2838">
+        <Grid.Resources>
+            <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Border Name="Border" Padding="2" SnapsToDevicePixels="true" >
+                                <ContentPresenter HorizontalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" >
+                                        <Setter.Value>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="DimGray" Offset="0" />
+                                                <GradientStop Color="#171D25" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter TargetName="Border" Property="Background" >
+                                        <Setter.Value>
+                                            <RadialGradientBrush>
+                                                <GradientStop Color="#97BB69" Offset="0" />
+                                                <GradientStop Color="#171D25" Offset="1" />
+                                            </RadialGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="SimpleRadioButton" TargetType="RadioButton">
+            </Style>
+
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="54" Grid.ColumnSpan="2" Background="#FF97BB69" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ComboBox  x:Name="cmbCurrency" FontFamily="Impact" FontSize="14" Foreground="DimGray" SelectedIndex="0"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Margin="70,9,0,0" VerticalAlignment="Top" Width="60" Grid.ColumnSpan="2" Background="#FF97BB69" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ComboBox  x:Name="cmbGameid"  FontFamily="Impact" FontSize="14" Foreground="DimGray" SelectedIndex="0" VirtualizingStackPanel.IsVirtualizing="True" />
+        </StackPanel>
+        <DockPanel Margin="0,175,0,0" Grid.ColumnSpan="2" Background="DimGray">
+            <TextBlock x:Name="tex1" Margin="-50,15" Width="256" Foreground="White" TextAlignment="Center" FontSize="15" FontFamily="Impact" Height="163">Steam Trade</TextBlock>
+        </DockPanel>
+        <TextBox   x:Name="searchTxb" MouseDoubleClick="searchTxb_MouseDoubleClick" TextWrapping="Wrap" Margin="0,151,0,0" Grid.ColumnSpan="2" FontSize="16" Background="#171D25" BorderThickness="0" Foreground="White" HorizontalAlignment="Left" Width="243" Height="24" VerticalAlignment="Top" FontFamily="Impact"/>
+        <DockPanel x:Name="mnCategories" Grid.Column="1" Background="#171D25" MouseLeftButtonDown="mnCategories_MouseLeftButtonDown" Opacity="1" HorizontalAlignment="Right" Width="150" Height="135" VerticalAlignment="Top">
+            <StackPanel x:Name="stkpanelCategories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12" AllowDrop="True">
+                <RadioButton x:Name ="rdBattle" Grid.Column="1" Foreground="DimGray" FontFamily="Impact" FontSize="14" Style="{StaticResource SimpleRadioButton}" Margin="0,3,0,0"/>
+                <RadioButton x:Name ="rdWell" Grid.Column="1" Foreground="DimGray" FontFamily="Impact" FontSize="14" Style="{StaticResource SimpleRadioButton}" Margin="0,3,0,0"/>
+                <RadioButton x:Name ="rdField" Grid.Column="1" Foreground="DimGray" FontFamily="Impact" FontSize="14" Style="{StaticResource SimpleRadioButton}" Margin="0,3,0,0"/>
+                <RadioButton x:Name ="rdMinimal" Grid.Column="1" Foreground="DimGray" FontFamily="Impact" FontSize="14" Style="{StaticResource SimpleRadioButton}" Margin="0,3,0,0"/>
+                <RadioButton x:Name ="rdFactory" Grid.Column="1" Foreground="DimGray" FontFamily="Impact" FontSize="14" Style="{StaticResource SimpleRadioButton}" Margin="0,3,0,0"/>
+                <WrapPanel  x:Name="wrp" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <ListBox x:Name="listWeapon1" Margin="0,40,0,0" FontFamily="Impact" FontSize="14" ItemContainerStyle="{StaticResource SimpleListBoxItem}" BorderThickness="0" Background="#171D25" VirtualizingStackPanel.IsVirtualizing ="True"/>
+                    <ListBox x:Name="listWeapon2" Margin="0,40,0,0" FontFamily="Impact" FontSize="14" ItemContainerStyle="{StaticResource SimpleListBoxItem}" BorderThickness="0" Background="#171D25" VirtualizingStackPanel.IsVirtualizing ="True"/>
+                    <ListBox x:Name="listWeapon3" Margin="0,40,0,0" FontFamily="Impact" FontSize="14" ItemContainerStyle="{StaticResource SimpleListBoxItem}" BorderThickness="0" Background="#171D25" VirtualizingStackPanel.IsVirtualizing ="True"/>
+                </WrapPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
